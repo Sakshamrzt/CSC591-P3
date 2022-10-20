@@ -100,15 +100,27 @@ experiment.config.search_space = search_space
 # Configure tuning algorithm
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^
 # Here we use :doc:`TPE tuner </hpo/tuners>`.
-experiment.config.tuner.name = 'Evolution'
+experiment.config.tuner.name = 'TPE'
 experiment.config.tuner.class_args['optimize_mode'] = 'maximize'
-experiment.config.tuner.class_args['population_size'] = 100
+
 # %%
 # Configure how many trials to run
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 # Here we evaluate 10 sets of hyperparameters in total, and concurrently evaluate 2 sets at a time.
-experiment.config.max_trial_number = 10
-experiment.config.trial_concurrency = 2
+experiment.config.max_trial_number = 20
+experiment.config.trial_concurrency = 4
+config.tuner.class_args = {
+    'optimize_mode': maximize,
+    'seed': 12345,
+    'tpe_args': {
+        'constant_liar_type': 'mean',
+        'n_startup_jobs': 10,
+        'n_ei_candidates': 20,
+        'linear_forgetting': 100,
+        'prior_weight': 0,
+        'gamma': 0.5
+    }
+}
 # %%
 # You may also set ``max_experiment_duration = '1h'`` to limit running time.
 #
@@ -127,7 +139,7 @@ experiment.config.trial_concurrency = 2
 # Now the experiment is ready. Choose a port and launch it. (Here we use port 8080.)
 #
 # You can use the web portal to view experiment status: http://localhost:8080.
-experiment.run(9091)
+experiment.run(9090)
 
 # %%
 # After the experiment is done
