@@ -56,8 +56,8 @@ The tutorial consists of 4 steps:
 # Now we can define the search space as follow:
 
 search_space = {
-    'features': {'_type': 'choice', '_value': [128, 256, 512, 1024]},
-    'lr': {'_type': 'loguniform', '_value': [0.0001, 0.1]}
+    'features': {'_type': 'choice', '_value': [64,128, 256, 512, 1024]},
+    'lr': {'_type': 'normal', '_value': [0.0001, 0.1]},
 }
 
 # %%
