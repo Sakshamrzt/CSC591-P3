@@ -56,8 +56,8 @@ The tutorial consists of 4 steps:
 # Now we can define the search space as follow:
 
 search_space = {
-    'features': {'_type': 'choice', '_value': [64,128, 256, 512, 1024]},
-    'lr': {'_type': 'normal', '_value': [0.0001, 0.1]},
+    'features': {'_type': 'choice', '_value': [128, 256, 512, 1024]},
+    'lr': {'_type': 'loguniform', '_value': [0.0001, 0.1]}
 }
 
 # %%
@@ -101,7 +101,6 @@ experiment.config.search_space = search_space
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^
 # Here we use :doc:`TPE tuner </hpo/tuners>`.
 experiment.config.tuner.name = 'TPE'
-experiment.config.tuner.class_args['optimize_mode'] = 'maximize'
 
 # %%
 # Configure how many trials to run
@@ -109,8 +108,8 @@ experiment.config.tuner.class_args['optimize_mode'] = 'maximize'
 # Here we evaluate 10 sets of hyperparameters in total, and concurrently evaluate 2 sets at a time.
 experiment.config.max_trial_number = 20
 experiment.config.trial_concurrency = 4
-config.tuner.class_args = {
-    'optimize_mode': maximize,
+experiment.config.tuner.class_args = {
+    'optimize_mode': 'maximize',
     'seed': 12345,
     'tpe_args': {
         'constant_liar_type': 'mean',

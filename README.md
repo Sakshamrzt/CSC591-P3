@@ -10,7 +10,7 @@
 Main scripts lies under scr directory.
 File  | Usage
 ------------- | -------------
-main-Evolution.py, main-Evolution1.py, main-SMAC.py, main-SMAC1.py, main-TPE.py, main-TPE1.py | Files containing nni experiments
+main-Evolution.py, main-Evolution1.py, main-Evolution-ss.py, main-SMAC.py, main-SMAC1.py, main-SMAC1-ss.py, main-TPE.py, main-TPE1.py, main-TPE-ss.py, | Files containing nni experiments
 model_vae.py | File containing vae model
 ----
 

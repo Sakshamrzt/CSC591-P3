@@ -27,6 +27,7 @@ from torchvision.transforms import ToTensor
 from torch import nn, optim
 from torch.nn import functional as F
 from torchvision import datasets, transforms
+import time
 # %%
 # Hyperparameters to be tuned
 # ---------------------------
@@ -148,7 +149,11 @@ def loss_function(recon_x, x, mu, logvar):
 epochs = 5
 for t in range(epochs):
     print(f"Epoch {t+1}\n-------------------------------")
+    time1=time.time()
     train( model,  optimizer)
     loss = test(model)
+    time2=time.time()
+    time_f=time2-time1
     nni.report_intermediate_result(loss)
-nni.report_final_result(loss)
+    nni.report_intermediate_result(time_f)
+nni.report_final_result({'default':loss,'time':time_f})

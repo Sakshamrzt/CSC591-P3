@@ -56,8 +56,8 @@ The tutorial consists of 4 steps:
 # Now we can define the search space as follow:
 
 search_space = {
-    'features': {'_type': 'choice', '_value': [64,128, 256, 512, 1024]},
-    'lr': {'_type': 'normal', '_value': [0.0001, 0.1]},
+    'features': {'_type': 'choice', '_value': [128, 256, 512, 1024]},
+    'lr': {'_type': 'loguniform', '_value': [0.0001, 0.1]}
 }
 
 # %%
@@ -102,7 +102,7 @@ experiment.config.search_space = search_space
 # Here we use :doc:`TPE tuner </hpo/tuners>`.
 experiment.config.tuner.name = 'SMAC'
 experiment.config.tuner.class_args['optimize_mode'] = 'maximize'
-experiment.config.tuner.class_args['config_dedup'] = True
+# experiment.config.tuner.class_args['config_dedup'] = True
 
 # %%
 # Configure how many trials to run

@@ -110,6 +110,7 @@ experiment.config.tuner.class_args['optimize_mode'] = 'maximize'
 experiment.config.max_trial_number = 10
 experiment.config.trial_concurrency = 2
 # %%
+
 # You may also set ``max_experiment_duration = '1h'`` to limit running time.
 #
 # If neither ``max_trial_number`` nor ``max_experiment_duration`` are set,
